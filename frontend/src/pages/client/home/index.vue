@@ -521,7 +521,7 @@ const formatNumber = (num) => {
   background: #000;
   border-radius: 24px;
   border: 1px solid var(--lg-border-strong);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 40px rgba(102, 217, 255, 0.1);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
   overflow: hidden;
   position: relative;
   display: flex;
@@ -546,9 +546,9 @@ const formatNumber = (num) => {
 .double-click-heart-pop {
   position: absolute;
   transform: translate(-50%, -50%);
-  color: #ff2d78;
+  color: rgba(255, 255, 255, 0.95);
   font-size: 80px;
-  filter: drop-shadow(0 0 16px rgba(255, 45, 120, 0.8));
+  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.35));
   pointer-events: none;
   animation: heartPopAnim 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.4) forwards;
 }
@@ -708,15 +708,15 @@ const formatNumber = (num) => {
 }
 
 .action-btn-circle.liked {
-  color: #ff2d78;
-  border-color: rgba(255, 45, 120, 0.42);
-  filter: drop-shadow(0 0 6px rgba(255, 45, 120, 0.5));
+  color: #ff3366;
+  border-color: rgba(255, 51, 102, 0.4);
+  box-shadow: 0 8px 24px rgba(255, 51, 102, 0.25);
 }
 
 .action-btn-circle.favorited {
-  color: #ffb700;
-  border-color: rgba(255, 183, 0, 0.42);
-  filter: drop-shadow(0 0 6px rgba(255, 183, 0, 0.4));
+  color: #ffcc00;
+  border-color: rgba(255, 204, 0, 0.4);
+  box-shadow: 0 8px 24px rgba(255, 204, 0, 0.25);
 }
 
 .action-label {
@@ -735,7 +735,7 @@ const formatNumber = (num) => {
 .avatar-ring {
   padding: 2.5px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent);
+  background: transparent;
   border: 1px solid var(--lg-border);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.45);
   display: flex;
@@ -746,7 +746,7 @@ const formatNumber = (num) => {
 
 .avatar-ring:hover {
   transform: scale(1.05);
-  background: var(--lg-brand-gradient);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 .follow-btn {
@@ -754,8 +754,8 @@ const formatNumber = (num) => {
   bottom: -4px;
   left: 50%;
   transform: translateX(-50%) scale(1);
-  background: #ff2d78;
-  border: 1.5px solid #000;
+  background: #ff3366;
+  border: 1.5px solid #08090d;
   color: #fff;
   width: 20px;
   height: 20px;
@@ -765,18 +765,17 @@ const formatNumber = (num) => {
   justify-content: center;
   font-size: 10px;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(255, 45, 120, 0.4);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.3);
 }
 
 .follow-btn:hover {
   transform: translateX(-50%) scale(1.18);
-  background: #ff3a84;
 }
 
 .follow-btn.followed {
   background: #22d399;
-  box-shadow: 0 2px 6px rgba(34, 211, 153, 0.4);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   transform: translateX(-50%) scale(0.9) rotate(360deg);
 }
 
@@ -811,7 +810,7 @@ const formatNumber = (num) => {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: var(--lg-brand-gradient);
+  background: #ffffff;
   border: 1px solid #111;
 }
 
@@ -839,9 +838,9 @@ const formatNumber = (num) => {
 }
 
 .bullet.active {
-  background: var(--lg-brand-cyan);
+  background: #ffffff;
   transform: scale(1.4);
-  box-shadow: 0 0 10px rgba(102, 217, 255, 0.8);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
   border-color: rgba(255, 255, 255, 0.2);
 }
 

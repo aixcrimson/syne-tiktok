@@ -446,13 +446,15 @@ const formatNumber = (num) => {
 }
 
 .reply-trigger {
-  color: var(--lg-brand-cyan);
+  color: #ffffff;
   font-weight: 600;
   cursor: pointer;
+  opacity: 0.85;
 }
 
 .reply-trigger:hover {
   text-decoration: underline;
+  opacity: 1;
 }
 
 /* Nest replies container */
@@ -520,8 +522,7 @@ const formatNumber = (num) => {
 }
 
 .comment-like-btn.is-liked {
-  color: #ff2d78;
-  filter: drop-shadow(0 0 4px rgba(255, 45, 120, 0.4));
+  color: #ff3366;
   animation: heartPop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.3);
 }
 
@@ -558,9 +559,8 @@ const formatNumber = (num) => {
 }
 
 .input-wrapper:focus-within {
-  border-color: rgba(102, 217, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.4);
   background: rgba(255, 255, 255, 0.09);
-  box-shadow: 0 0 14px rgba(102, 217, 255, 0.12);
 }
 
 .input-wrapper input {
@@ -596,12 +596,12 @@ const formatNumber = (num) => {
 }
 
 .emoji-btn:hover {
-  color: var(--lg-brand-cyan);
+  color: #ffffff;
   background: rgba(255, 255, 255, 0.06);
 }
 
 .send-btn {
-  color: var(--lg-brand-cyan);
+  color: #ffffff;
 }
 
 .send-btn:disabled {
@@ -610,10 +610,9 @@ const formatNumber = (num) => {
 }
 
 .send-btn:not(:disabled):hover {
-  background: var(--lg-brand-gradient);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.95);
+  color: #08090d;
   transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(255, 45, 120, 0.3);
 }
 
 /* Tablet & Mobile responsive drawers */

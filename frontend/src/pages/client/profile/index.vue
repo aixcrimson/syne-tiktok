@@ -322,9 +322,7 @@ const formatNumber = (num) => {
 .avatar-glow-wrapper {
   padding: 4px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.02) 40%, transparent 60%);
   border: 1px solid var(--lg-border);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3);
 }
 
 .profile-avatar {
@@ -343,9 +341,7 @@ const formatNumber = (num) => {
   font-weight: 800;
   margin: 0;
   letter-spacing: -0.5px;
-  background: linear-gradient(90deg, #fff, rgba(255, 255, 255, 0.8));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff;
 }
 
 .user-unique-id {
@@ -375,15 +371,13 @@ const formatNumber = (num) => {
 }
 
 .btn-primary {
-  background: var(--lg-brand-gradient);
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 6px 16px rgba(255, 45, 120, 0.22);
+  background: rgba(255, 255, 255, 0.95);
+  color: #08090d;
+  border-color: rgba(255, 255, 255, 0.8);
 }
 
 .btn-primary:hover {
-  filter: brightness(1.15);
-  transform: translateY(-1px);
+  background: #ffffff;
 }
 
 .btn-secondary {
@@ -467,10 +461,7 @@ const formatNumber = (num) => {
 
 .tab-nav-item.active {
   color: var(--lg-text-primary);
-  background: rgba(255, 255, 255, 0.11);
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    0 4px 12px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .lock-icon {
@@ -513,8 +504,6 @@ const formatNumber = (num) => {
   cursor: pointer;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
   transition: all var(--lg-motion);
-  transform-style: preserve-3d;
-  perspective: 1000px;
 }
 
 .video-preview-wrapper {
@@ -567,16 +556,13 @@ const formatNumber = (num) => {
 }
 
 .video-grid-card:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 
-    0 16px 36px rgba(0, 0, 0, 0.42),
-    0 0 20px rgba(102, 217, 255, 0.22);
-  border-color: var(--lg-border-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .video-grid-card:hover .card-glow-overlay {
-  border-color: rgba(102, 217, 255, 0.42);
-  box-shadow: inset 0 0 12px rgba(102, 217, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Card details stats */
@@ -610,7 +596,7 @@ const formatNumber = (num) => {
 }
 
 .heart-icon {
-  color: #ff2d78;
+  color: #ff3366;
 }
 
 /* Fullscreen Video Playback Overlay */
@@ -712,7 +698,7 @@ const formatNumber = (num) => {
 .author-tag {
   font-size: 14px;
   font-weight: 800;
-  color: var(--lg-brand-cyan);
+  color: #ffffff;
 }
 
 .player-info-footer .desc {

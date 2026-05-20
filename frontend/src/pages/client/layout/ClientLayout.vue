@@ -1,9 +1,6 @@
 <template>
   <div class="client-layout-container">
-    <!-- background flowing fluid blobs for refraction mapping -->
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
+    <!-- Pure dark layout (no blobs) -->
 
     <!-- PC Navigation Bar -->
     <header class="client-header glass-nav">
@@ -185,56 +182,14 @@ const handleVideoUploaded = (newVideo) => {
   width: 100%;
   height: 100vh;
   position: relative;
-  background: var(--lg-bg-radial);
+  background: #08090d;
   color: var(--lg-text-primary);
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
-/* Background Flowing Blobs */
-.blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.35;
-  will-change: transform;
-}
-
-.blob-1 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(255, 45, 120, 0.45) 0%, transparent 70%);
-  top: -10%;
-  right: -5%;
-  animation: float-slow 35s infinite alternate ease-in-out;
-}
-
-.blob-2 {
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(102, 217, 255, 0.35) 0%, transparent 70%);
-  bottom: -15%;
-  left: -10%;
-  animation: float-slow 28s infinite alternate-reverse ease-in-out;
-}
-
-.blob-3 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
-  top: 40%;
-  left: 25%;
-  animation: float-slow 22s infinite alternate ease-in-out;
-}
-
-@keyframes float-slow {
-  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-  50% { transform: translate(50px, 40px) scale(1.1) rotate(180deg); }
-  100% { transform: translate(-30px, -20px) scale(0.95) rotate(360deg); }
-}
+/* Static background setup */
 
 /* Navigation Bar */
 .client-header {
@@ -276,31 +231,19 @@ const handleVideoUploaded = (newVideo) => {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: var(--lg-brand-gradient);
+  background: #ffffff;
   margin-right: 10px;
-  box-shadow: 0 0 14px rgba(255, 45, 120, 0.8), 0 0 4px rgba(102, 217, 255, 0.5);
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); box-shadow: 0 0 14px rgba(255, 45, 120, 0.8); }
-  50% { transform: scale(1.15); box-shadow: 0 0 22px rgba(255, 45, 120, 1), 0 0 10px rgba(102, 217, 255, 0.8); }
-  100% { transform: scale(1); box-shadow: 0 0 14px rgba(255, 45, 120, 0.8); }
 }
 
 .logo-text {
   font-size: 24px;
   font-weight: 800;
   letter-spacing: -1px;
-  background: linear-gradient(to right, #fff 40%, rgba(255, 255, 255, 0.7));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff;
 }
 
 .logo-sub {
-  background: var(--lg-brand-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--lg-text-secondary);
   margin-left: 2px;
 }
 
@@ -363,10 +306,9 @@ const handleVideoUploaded = (newVideo) => {
 }
 
 .glass-search-box:focus-within .search-btn {
-  background: var(--lg-brand-gradient);
-  border-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
-  box-shadow: 0 6px 15px rgba(255, 45, 120, 0.25);
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(255, 255, 255, 0.95);
+  color: #08090d;
 }
 
 .search-btn:hover {
@@ -402,10 +344,8 @@ const handleVideoUploaded = (newVideo) => {
 }
 
 .upload-btn:hover {
-  background: var(--lg-brand-gradient);
-  border-color: rgba(255, 255, 255, 0.22);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(255, 45, 120, 0.25);
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.42);
 }
 
 .icon-badge-btn {
@@ -448,13 +388,12 @@ const handleVideoUploaded = (newVideo) => {
   cursor: pointer;
   padding: 2px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
-  transition: all var(--lg-motion);
+  background: transparent;
+  border: 1.5px solid transparent;
 }
 
 .avatar-wrapper:hover {
-  background: var(--lg-brand-gradient);
-  transform: scale(1.05);
+  border-color: rgba(255, 255, 255, 0.45);
 }
 
 .client-avatar {
@@ -622,8 +561,7 @@ const handleVideoUploaded = (newVideo) => {
   }
 
   .tab-item.active .tab-icon {
-    color: var(--lg-brand-cyan);
-    filter: drop-shadow(0 0 6px rgba(102, 217, 255, 0.6));
+    color: #ffffff;
   }
 
   .tab-label {
@@ -646,10 +584,8 @@ const handleVideoUploaded = (newVideo) => {
     justify-content: center;
     font-size: 16px;
     font-weight: 800;
-    box-shadow: 
-      -3px 0 0 rgba(102, 217, 255, 0.9), 
-      3px 0 0 rgba(255, 45, 120, 0.9),
-      0 4px 10px rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: transform var(--lg-motion);
   }
 

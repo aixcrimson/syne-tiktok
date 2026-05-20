@@ -1,11 +1,6 @@
 <template>
   <div class="admin-layout">
-    <!-- Dynamic animated background -->
-    <div class="background-layer">
-      <div class="blob-1"></div>
-      <div class="blob-2"></div>
-      <div class="blob-3"></div>
-    </div>
+    <!-- Pure deep dark background (no blobs) -->
 
     <!-- Dynamic Island (Top Navigation) -->
     <div class="dynamic-island-wrapper">
@@ -103,7 +98,7 @@ const handleLogout = () => {
   width: 100vw;
   height: 100vh;
   position: relative;
-  background: var(--lg-bg-radial);
+  background: #08090d;
   color: var(--lg-text-primary);
   overflow: hidden;
   display: flex;
@@ -111,73 +106,14 @@ const handleLogout = () => {
   align-items: center;
 }
 
-/* Background gradient blobs */
-.background-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  overflow: hidden;
-  filter: blur(80px);
-}
+/* Static layout setup */
 
-.blob-1 {
-  position: absolute;
-  width: 820px;
-  height: 820px;
-  background: radial-gradient(circle, rgba(255,45,120,0.46), transparent 62%);
-  top: -22%;
-  right: -10%;
-  animation: float-slow 30s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
-  transform: translateZ(0);
-}
-
-.blob-2 {
-  position: absolute;
-  width: 1000px;
-  height: 1000px;
-  background: radial-gradient(circle, rgba(102,217,255,0.34), transparent 62%);
-  bottom: -30%;
-  left: -20%;
-  animation: float-slow 25s infinite alternate-reverse cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
-  transform: translateZ(0);
-}
-
-.blob-3 {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(139,92,246,0.34), transparent 62%);
-  top: 40%;
-  left: 30%;
-  animation: float-slow 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
-  transform: translateZ(0);
-}
-
-@keyframes float-slow {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(100px, 150px) scale(1.1); }
-  100% { transform: translate(-50px, -50px) scale(0.9); }
-}
-
-/* Dynamic Island */
 .dynamic-island-wrapper {
   position: relative;
   z-index: 100;
   width: min(680px, calc(100vw - 32px));
   height: 60px;
   margin-top: 32px;
-  transition: transform var(--lg-motion), filter var(--lg-motion);
-}
-
-.dynamic-island-wrapper:hover {
-  filter: brightness(1.08);
-  transform: scale(1.018);
 }
 
 .dynamic-island {
@@ -202,9 +138,8 @@ const handleLogout = () => {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: var(--lg-brand-gradient);
+  background: rgba(255, 255, 255, 0.85);
   margin-right: 8px;
-  box-shadow: 0 0 10px rgba(255, 42, 95, 0.8);
 }
 
 .ios-menu {
@@ -306,11 +241,6 @@ const handleLogout = () => {
   display: flex;
   flex-direction: column;
   min-height: 0;
-  transition: transform var(--lg-motion), filter var(--lg-motion);
-}
-
-.content-wrapper:hover {
-  transform: translateY(-2px);
 }
 
 .glass-content-inner {

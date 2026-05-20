@@ -287,7 +287,7 @@ const publishVideo = () => {
   z-index: 10;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 45, 120, 0.1);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5);
   border: 1px solid var(--lg-border-strong);
   border-radius: 28px;
 }
@@ -312,9 +312,7 @@ const publishVideo = () => {
   font-size: 19px;
   font-weight: 800;
   letter-spacing: -0.3px;
-  background: var(--lg-brand-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff;
 }
 
 .close-btn {
@@ -373,9 +371,9 @@ const publishVideo = () => {
 
 .dropzone-box:hover,
 .dropzone-box.dragging {
-  border-color: var(--lg-brand-cyan);
-  background: rgba(102, 217, 255, 0.06);
-  box-shadow: 0 0 24px rgba(102, 217, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 24px rgba(255, 255, 255, 0.08);
 }
 
 .upload-icon {
@@ -387,7 +385,7 @@ const publishVideo = () => {
 
 .dropzone-box:hover .upload-icon {
   transform: translateY(-4px);
-  color: var(--lg-brand-cyan);
+  color: var(--lg-text-primary);
 }
 
 .upload-title {
@@ -494,12 +492,11 @@ const publishVideo = () => {
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #ff2d78 0%, #8b5cf6 50%, #66d9ff 100%);
+  background: rgba(255, 255, 255, 0.85);
   border-radius: 10px;
   position: relative;
   transition: width 0.15s ease-out;
   overflow: hidden;
-  box-shadow: 0 0 10px rgba(102, 217, 255, 0.3);
 }
 
 /* Water liquid wave effects inside progress bar */
@@ -539,7 +536,6 @@ const publishVideo = () => {
   display: flex;
   align-items: center;
   gap: 6px;
-  text-shadow: 0 0 8px rgba(34, 211, 153, 0.3);
 }
 
 /* Right Details Form */
@@ -575,9 +571,8 @@ const publishVideo = () => {
 
 .form-item input:focus,
 .form-item textarea:focus {
-  border-color: rgba(102, 217, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.4);
   background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 10px rgba(102, 217, 255, 0.1);
 }
 
 .form-item input::placeholder,
@@ -610,8 +605,8 @@ const publishVideo = () => {
 }
 
 .cover-option-card.active {
-  border-color: var(--lg-brand-cyan);
-  box-shadow: 0 0 12px rgba(102, 217, 255, 0.4);
+  border-color: #ffffff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
 }
 
 .selected-overlay {
@@ -621,7 +616,7 @@ const publishVideo = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--lg-brand-cyan);
+  color: #ffffff;
   font-size: 18px;
 }
 
@@ -658,10 +653,9 @@ const publishVideo = () => {
 }
 
 .publish-btn {
-  background: var(--lg-brand-gradient);
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.22);
-  box-shadow: 0 8px 24px rgba(255, 45, 120, 0.22);
+  background: rgba(255, 255, 255, 0.95);
+  color: #08090d;
+  border-color: rgba(255, 255, 255, 0.8);
 }
 
 .publish-btn:hover:not(:disabled) {

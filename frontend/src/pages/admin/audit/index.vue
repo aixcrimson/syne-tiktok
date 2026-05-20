@@ -259,10 +259,10 @@ const onSearch = () => {
 }
 
 :deep(.glass-filter .ant-radio-button-wrapper-checked) {
-  color: var(--lg-text-primary) !important;
-  background: var(--lg-brand-gradient) !important;
-  border-color: rgba(255, 255, 255, 0.42) !important;
-  box-shadow: 0 10px 26px rgba(255, 45, 120, 0.24) !important;
+  color: #08090d !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(255, 255, 255, 0.8) !important;
+  box-shadow: none !important;
 }
 
 /* Glass Table Styles Override */
@@ -307,8 +307,11 @@ const onSearch = () => {
   color: var(--lg-text-primary);
 }
 :deep(.ant-pagination-item-active) {
-  background: var(--lg-brand-gradient);
-  border-color: rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(255, 255, 255, 0.8) !important;
+}
+:deep(.ant-pagination-item-active a) {
+  color: #08090d !important;
 }
 :deep(.ant-pagination-item-link) {
   background: rgba(255, 255, 255, 0.08) !important;
@@ -338,9 +341,13 @@ const onSearch = () => {
 }
 
 :deep(.ant-btn-primary) {
-  background: linear-gradient(135deg, #14f195, #66d9ff) !important;
-  border-color: rgba(255, 255, 255, 0.28) !important;
-  box-shadow: 0 10px 22px rgba(20, 241, 149, 0.18);
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(255, 255, 255, 0.8) !important;
+  color: #08090d !important;
+  box-shadow: none !important;
+}
+:deep(.ant-btn-primary:hover) {
+  background: #ffffff !important;
 }
 
 :deep(.ant-btn-dangerous) {
@@ -373,14 +380,14 @@ const onSearch = () => {
   color: #22d399;
   background: rgba(16, 185, 129, 0.16);
   border: 1px solid rgba(34, 211, 153, 0.36);
-  box-shadow: 0 0 18px rgba(16, 185, 129, 0.22);
+  box-shadow: none;
 }
 
 .status-badge.rejected {
   color: #ff7aa8;
   background: rgba(255, 45, 120, 0.14);
   border: 1px solid rgba(255, 45, 120, 0.34);
-  box-shadow: 0 0 18px rgba(255, 45, 120, 0.2);
+  box-shadow: none;
 }
 
 .status-icon {

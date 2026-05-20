@@ -34,8 +34,8 @@
 .glass-toolbar,
 .comments-list {
   border: 1px solid var(--lg-border);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
-  box-shadow: 0 18px 56px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   backdrop-filter: var(--lg-blur-soft);
   -webkit-backdrop-filter: var(--lg-blur-soft);
 }
@@ -64,17 +64,6 @@ h2 {
   align-items: center;
   position: relative;
   overflow: hidden;
-}
-
-.comments-list::before {
-  content: '';
-  position: absolute;
-  width: 280px;
-  height: 280px;
-  border-radius: 999px;
-  background: radial-gradient(circle, rgba(102, 217, 255, 0.18), transparent 64%);
-  top: -90px;
-  right: -70px;
 }
 
 :deep(.glass-search .ant-input),
