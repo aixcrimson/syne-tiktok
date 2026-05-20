@@ -25,7 +25,7 @@
     >
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'cover'">
-          <div class="video-cover" :style="{ backgroundImage: `url(${record.cover})` }">
+          <div class="video-cover" :style="{ backgroundImage: `url(${record.cover})` }" @click="playVideo(record)">
             <div class="play-icon"><PlayCircleOutlined /></div>
           </div>
         </template>
@@ -54,6 +54,27 @@
         </template>
       </template>
     </a-table>
+
+    <!-- 视频播放弹窗 -->
+    <a-modal
+      v-model:open="isPlayModalVisible"
+      :title="currentVideo?.title || '视频预览'"
+      :footer="null"
+      destroyOnClose
+      centered
+      width="800px"
+      wrapClassName="glass-modal-wrap"
+    >
+      <div class="video-player-container">
+        <video
+          v-if="currentVideo?.videoUrl"
+          :src="currentVideo.videoUrl"
+          controls
+          autoplay
+          class="video-element"
+        ></video>
+      </div>
+    </a-modal>
   </div>
 </template>
 
@@ -64,6 +85,13 @@ import { message } from 'ant-design-vue';
 
 const searchText = ref('');
 const statusFilter = ref('pending');
+const isPlayModalVisible = ref(false);
+const currentVideo = ref(null);
+
+const playVideo = (record) => {
+  currentVideo.value = record;
+  isPlayModalVisible.value = true;
+};
 
 const columns = [
   { title: 'ID', dataIndex: 'id', key: 'id', width: '80px' },
@@ -76,11 +104,11 @@ const columns = [
 ];
 
 const mockData = ref([
-  { id: 'V001', cover: 'https://picsum.photos/id/10/200/300', title: 'Amazing Nature Scenery', author: 'nature_lover', time: '2026-05-18 10:00', status: 'pending' },
-  { id: 'V002', cover: 'https://picsum.photos/id/20/200/300', title: 'Funny Cat Compilation', author: 'cat_memes', time: '2026-05-18 09:30', status: 'approved' },
-  { id: 'V003', cover: 'https://picsum.photos/id/30/200/300', title: 'How to code in Vue 3', author: 'dev_guru', time: '2026-05-18 08:15', status: 'pending' },
-  { id: 'V004', cover: 'https://picsum.photos/id/40/200/300', title: 'Street Food Tour', author: 'foodie', time: '2026-05-17 22:40', status: 'rejected' },
-  { id: 'V005', cover: 'https://picsum.photos/id/50/200/300', title: 'Liquid Glass Tutorial', author: 'ui_designer', time: '2026-05-17 15:20', status: 'pending' },
+  { id: 'V001', cover: 'https://picsum.photos/id/10/200/300', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4', title: 'Amazing Nature Scenery', author: 'nature_lover', time: '2026-05-18 10:00', status: 'pending' },
+  { id: 'V002', cover: 'https://picsum.photos/id/20/200/300', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-playful-cat-lying-on-a-carpet-43286-large.mp4', title: 'Funny Cat Compilation', author: 'cat_memes', time: '2026-05-18 09:30', status: 'approved' },
+  { id: 'V003', cover: 'https://picsum.photos/id/30/200/300', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-typing-on-a-backlit-keyboard-in-the-dark-44026-large.mp4', title: 'How to code in Vue 3', author: 'dev_guru', time: '2026-05-18 08:15', status: 'pending' },
+  { id: 'V004', cover: 'https://picsum.photos/id/40/200/300', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-cutting-vegetables-on-a-wooden-board-43026-large.mp4', title: 'Street Food Tour', author: 'foodie', time: '2026-05-17 22:40', status: 'rejected' },
+  { id: 'V005', cover: 'https://picsum.photos/id/50/200/300', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-woman-working-on-a-laptop-in-a-cafe-43028-large.mp4', title: 'Liquid Glass Tutorial', author: 'ui_designer', time: '2026-05-17 15:20', status: 'pending' },
 ]);
 
 const filteredData = computed(() => {
@@ -240,5 +268,54 @@ const onSearch = () => {
   text-shadow: none !important;
   box-shadow: none !important;
   cursor: not-allowed !important;
+}
+
+/* Glass Modal Custom Styles */
+:deep(.glass-modal-wrap .ant-modal-content) {
+  background: rgba(20, 20, 25, 0.6) !important;
+  backdrop-filter: blur(20px) saturate(1.8) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6) !important;
+  color: white !important;
+}
+
+:deep(.glass-modal-wrap .ant-modal-header) {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding-bottom: 12px;
+}
+
+:deep(.glass-modal-wrap .ant-modal-title) {
+  color: white !important;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+:deep(.glass-modal-wrap .ant-modal-close) {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+:deep(.glass-modal-wrap .ant-modal-close:hover) {
+  color: white !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.video-player-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  margin-top: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.video-element {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 </style>
