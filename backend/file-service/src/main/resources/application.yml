@@ -1,0 +1,30 @@
+server:
+  port: 8084
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 500MB
+
+spring:
+  application:
+    name: file-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        namespace: public
+      config:
+        server-addr: localhost:8848
+        file-extension: yml
+
+# MinIO 配置
+minio:
+  endpoint: http://localhost:9000
+  access-key: minioadmin
+  secret-key: minioadmin
+  bucket-name: syne-tiktok
+
+logging:
+  level:
+    root: INFO
+    com.syne.tiktok: DEBUG
