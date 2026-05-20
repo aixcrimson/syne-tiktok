@@ -3,7 +3,20 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    redirect: '/admin/login'
+    component: () => import('@/pages/client/layout/ClientLayout.vue'),
+    redirect: '/home',
+    children: [
+      {
+        path: 'home',
+        name: 'Home',
+        component: () => import('@/pages/client/home/index.vue')
+      },
+      {
+        path: 'user/:id',
+        name: 'UserProfile',
+        component: () => import('@/pages/client/profile/index.vue')
+      }
+    ]
   },
   {
     path: '/admin/login',
