@@ -1,6 +1,78 @@
-/* Cleaned default Vite styles */
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: rgba(255, 255, 255, 0.92);
+  background: #04060d;
+  --lg-bg-deep: #04060d;
+  --lg-bg-radial: radial-gradient(circle at 18% 18%, rgba(102, 217, 255, 0.22), transparent 32%), radial-gradient(circle at 82% 8%, rgba(255, 45, 122, 0.26), transparent 30%), radial-gradient(circle at 50% 90%, rgba(117, 82, 255, 0.2), transparent 36%), #04060d;
+  --lg-surface-soft: rgba(255, 255, 255, 0.08);
+  --lg-surface-medium: rgba(255, 255, 255, 0.14);
+  --lg-surface-strong: rgba(255, 255, 255, 0.2);
+  --lg-border: rgba(255, 255, 255, 0.18);
+  --lg-border-strong: rgba(255, 255, 255, 0.32);
+  --lg-highlight: rgba(255, 255, 255, 0.55);
+  --lg-text-primary: rgba(255, 255, 255, 0.94);
+  --lg-text-secondary: rgba(255, 255, 255, 0.68);
+  --lg-text-muted: rgba(255, 255, 255, 0.45);
+  --lg-brand-pink: #ff2d78;
+  --lg-brand-cyan: #66d9ff;
+  --lg-brand-violet: #8b5cf6;
+  --lg-brand-gradient: linear-gradient(135deg, #ff2d78 0%, #8b5cf6 48%, #66d9ff 100%);
+  --lg-shadow-soft: 0 18px 60px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  --lg-shadow-strong: 0 28px 90px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.32);
+  --lg-blur-soft: blur(18px) saturate(1.6) contrast(1.04);
+  --lg-blur-strong: blur(30px) saturate(1.9) contrast(1.08);
+  --lg-radius-xl: 28px;
+  --lg-radius-2xl: 36px;
+  --lg-motion: 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  min-width: 0;
+  min-height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
-  background-color: #090b0f;
+  background: var(--lg-bg-radial);
+  color: var(--lg-text-primary);
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(102, 217, 255, 0.32);
+  color: #fff;
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root {
+    --lg-surface-soft: rgba(22, 26, 38, 0.88);
+    --lg-surface-medium: rgba(30, 34, 48, 0.92);
+    --lg-surface-strong: rgba(38, 42, 58, 0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
 }

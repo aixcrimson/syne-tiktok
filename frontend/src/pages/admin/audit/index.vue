@@ -1,14 +1,14 @@
 <template>
   <div class="audit-page">
-    <div class="header-actions">
+    <div class="header-actions glass-toolbar">
       <a-input-search
         v-model:value="searchText"
         placeholder="Search videos by title or author"
-        style="width: 300px"
+        class="glass-search"
         @search="onSearch"
         size="large"
       />
-      <a-radio-group v-model:value="statusFilter" button-style="solid" size="large">
+      <a-radio-group v-model:value="statusFilter" button-style="solid" size="large" class="glass-filter">
         <a-radio-button value="all">All</a-radio-button>
         <a-radio-button value="pending">Pending</a-radio-button>
         <a-radio-button value="approved">Approved</a-radio-button>
@@ -16,13 +16,14 @@
       </a-radio-group>
     </div>
 
-    <a-table 
-      :columns="columns" 
-      :data-source="filteredData" 
-      class="glass-table"
-      :pagination="{ pageSize: 8 }"
-      :scroll="{ x: 'max-content' }"
-    >
+    <div class="table-shell">
+      <a-table
+        :columns="columns"
+        :data-source="filteredData"
+        class="glass-table"
+        :pagination="{ pageSize: 8 }"
+        :scroll="{ x: 'max-content' }"
+      >
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'cover'">
           <div class="video-cover" :style="{ backgroundImage: `url(${record.cover})` }" @click="playVideo(record)">
@@ -53,7 +54,8 @@
           </div>
         </template>
       </template>
-    </a-table>
+      </a-table>
+    </div>
 
     <!-- 视频播放弹窗 -->
     <a-modal
@@ -149,12 +151,39 @@ const onSearch = () => {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  min-width: 0;
 }
 
 .header-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.glass-toolbar {
+  padding: 14px;
+  border: 1px solid var(--lg-border);
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.05));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 16px 40px rgba(0, 0, 0, 0.2);
+  backdrop-filter: var(--lg-blur-soft);
+  -webkit-backdrop-filter: var(--lg-blur-soft);
+}
+
+.glass-search {
+  width: min(360px, 100%);
+}
+
+.table-shell {
+  border: 1px solid var(--lg-border);
+  border-radius: 28px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.035));
+  box-shadow: 0 20px 64px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  backdrop-filter: var(--lg-blur-soft);
+  -webkit-backdrop-filter: var(--lg-blur-soft);
 }
 
 .video-cover {
@@ -162,63 +191,162 @@ const onSearch = () => {
   height: 120px;
   background-size: cover;
   background-position: center;
-  border-radius: 8px;
+  border-radius: 16px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform var(--lg-motion), box-shadow var(--lg-motion), filter var(--lg-motion);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
 }
 
 .video-cover:hover {
-  transform: scale(1.05);
+  filter: saturate(1.12) brightness(1.08);
+  transform: scale(1.045);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.38), 0 0 22px rgba(102, 217, 255, 0.18);
 }
 
 .play-icon {
   font-size: 24px;
   color: white;
   opacity: 0.8;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 10px;
+  backdrop-filter: blur(12px);
+}
+
+/* Glass controls */
+:deep(.glass-search .ant-input),
+:deep(.glass-search .ant-input-group-addon),
+:deep(.glass-search .ant-btn) {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: var(--lg-border) !important;
+  color: var(--lg-text-primary) !important;
+  box-shadow: none !important;
+}
+
+:deep(.glass-search .ant-input) {
+  height: 44px;
+  border-radius: 16px 0 0 16px !important;
+}
+
+:deep(.glass-search .ant-input::placeholder) {
+  color: var(--lg-text-muted);
+}
+
+:deep(.glass-search .ant-btn) {
+  height: 44px;
+  border-radius: 0 16px 16px 0 !important;
+}
+
+:deep(.glass-filter .ant-radio-button-wrapper) {
+  height: 44px;
+  padding-inline: 18px;
+  color: var(--lg-text-secondary);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--lg-border);
+  box-shadow: none;
+  transition: all var(--lg-motion);
+}
+
+:deep(.glass-filter .ant-radio-button-wrapper:hover) {
+  color: var(--lg-text-primary);
+  background: rgba(255, 255, 255, 0.13);
+}
+
+:deep(.glass-filter .ant-radio-button-wrapper-checked) {
+  color: var(--lg-text-primary) !important;
+  background: var(--lg-brand-gradient) !important;
+  border-color: rgba(255, 255, 255, 0.42) !important;
+  box-shadow: 0 10px 26px rgba(255, 45, 120, 0.24) !important;
 }
 
 /* Glass Table Styles Override */
 :deep(.ant-table) {
   background: transparent !important;
-  color: white;
+  color: var(--lg-text-primary);
+}
+:deep(.ant-table-container) {
+  border-radius: 26px;
 }
 :deep(.ant-table-thead > tr > th) {
-  background: rgba(255, 255, 255, 0.1) !important;
-  color: white;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.13) !important;
+  color: var(--lg-text-primary);
+  border-bottom: 1px solid var(--lg-border);
+  font-weight: 700;
 }
 :deep(.ant-table-tbody > tr > td) {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: background 0.15s ease !important;
+  color: var(--lg-text-secondary);
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  transition: background var(--lg-motion), color var(--lg-motion) !important;
 }
 :deep(.ant-table-tbody > tr:hover > td),
 :deep(.ant-table-tbody > tr.ant-table-row-hover > td),
 :deep(.ant-table-cell-row-hover) {
-  background: rgba(255, 255, 255, 0.05) !important;
+  background: rgba(255, 255, 255, 0.105) !important;
+  color: var(--lg-text-primary) !important;
+}
+:deep(.ant-table-tbody > tr:last-child > td) {
+  border-bottom-color: transparent;
+}
+:deep(.ant-pagination) {
+  padding: 10px 16px 14px;
+  margin: 0 !important;
 }
 :deep(.ant-pagination-item) {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--lg-border);
+  border-radius: 12px;
 }
 :deep(.ant-pagination-item a) {
-  color: white;
+  color: var(--lg-text-primary);
 }
 :deep(.ant-pagination-item-active) {
-  background: #ff0050;
-  border-color: #ff0050;
+  background: var(--lg-brand-gradient);
+  border-color: rgba(255, 255, 255, 0.42);
 }
 :deep(.ant-pagination-item-link) {
-  background: rgba(255, 255, 255, 0.1) !important;
-  color: white !important;
-  border-color: rgba(255, 255, 255, 0.2) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: var(--lg-text-primary) !important;
+  border-color: var(--lg-border) !important;
+  border-radius: 12px !important;
 }
 :deep(.ant-empty-description) {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--lg-text-muted);
+}
+
+:deep(.ant-tag) {
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-weight: 700;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+:deep(.ant-btn) {
+  border-radius: 12px;
+  transition: transform var(--lg-motion), box-shadow var(--lg-motion), background var(--lg-motion);
+}
+
+:deep(.ant-btn:not([disabled]):hover) {
+  transform: translateY(-1px);
+}
+
+:deep(.ant-btn-primary) {
+  background: linear-gradient(135deg, #14f195, #66d9ff) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  box-shadow: 0 10px 22px rgba(20, 241, 149, 0.18);
+}
+
+:deep(.ant-btn-dangerous) {
+  background: rgba(255, 45, 120, 0.12);
+  border-color: rgba(255, 45, 120, 0.4);
+  color: #ff7aa8;
 }
 
 /* Action Column Completed Styles */
@@ -242,17 +370,17 @@ const onSearch = () => {
 }
 
 .status-badge.approved {
-  color: #10b981;
-  background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+  color: #22d399;
+  background: rgba(16, 185, 129, 0.16);
+  border: 1px solid rgba(34, 211, 153, 0.36);
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.22);
 }
 
 .status-badge.rejected {
-  color: #ef4444;
-  background: rgba(239, 68, 68, 0.15);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  box-shadow: 0 0 12px rgba(239, 68, 68, 0.2);
+  color: #ff7aa8;
+  background: rgba(255, 45, 120, 0.14);
+  border: 1px solid rgba(255, 45, 120, 0.34);
+  box-shadow: 0 0 18px rgba(255, 45, 120, 0.2);
 }
 
 .status-icon {
@@ -262,9 +390,9 @@ const onSearch = () => {
 /* Custom Disabled Button Styles on Dark Glass */
 :deep(.ant-btn[disabled]),
 :deep(.ant-btn-disabled) {
-  background: rgba(255, 255, 255, 0.04) !important;
-  border-color: rgba(255, 255, 255, 0.08) !important;
-  color: rgba(255, 255, 255, 0.2) !important;
+  background: var(--lg-surface-soft) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: var(--lg-text-muted) !important;
   text-shadow: none !important;
   box-shadow: none !important;
   cursor: not-allowed !important;
@@ -272,50 +400,71 @@ const onSearch = () => {
 
 /* Glass Modal Custom Styles */
 :deep(.glass-modal-wrap .ant-modal-content) {
-  background: rgba(20, 20, 25, 0.6) !important;
-  backdrop-filter: blur(20px) saturate(1.8) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(1.8) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  border-radius: 20px !important;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6) !important;
-  color: white !important;
+  background: rgba(11, 14, 24, 0.68) !important;
+  backdrop-filter: var(--lg-blur-strong) !important;
+  -webkit-backdrop-filter: var(--lg-blur-strong) !important;
+  border: 1px solid var(--lg-border-strong) !important;
+  border-radius: 28px !important;
+  box-shadow: var(--lg-shadow-strong) !important;
+  color: var(--lg-text-primary) !important;
 }
 
 :deep(.glass-modal-wrap .ant-modal-header) {
   background: transparent !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
   padding-bottom: 12px;
 }
 
 :deep(.glass-modal-wrap .ant-modal-title) {
-  color: white !important;
+  color: var(--lg-text-primary) !important;
   font-weight: 600;
   font-size: 18px;
 }
 
 :deep(.glass-modal-wrap .ant-modal-close) {
-  color: rgba(255, 255, 255, 0.6) !important;
+  color: var(--lg-text-secondary) !important;
 }
 
 :deep(.glass-modal-wrap .ant-modal-close:hover) {
-  color: white !important;
+  color: var(--lg-text-primary) !important;
   background: rgba(255, 255, 255, 0.1) !important;
 }
 
 .video-player-container {
   width: 100%;
   aspect-ratio: 16 / 9;
-  border-radius: 12px;
+  border-radius: 18px;
   overflow: hidden;
   background: #000;
   margin-top: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--lg-border);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
 }
 
 .video-element {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+@media (max-width: 720px) {
+  .header-actions {
+    align-items: stretch;
+  }
+
+  .glass-search,
+  .glass-filter {
+    width: 100%;
+  }
+
+  :deep(.glass-filter) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  :deep(.glass-filter .ant-radio-button-wrapper) {
+    text-align: center;
+    padding-inline: 10px;
+  }
 }
 </style>

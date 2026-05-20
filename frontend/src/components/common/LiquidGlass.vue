@@ -308,15 +308,16 @@ const containerStyle = computed(() => {
     WebkitBackdropFilter: backdropFilterValue,
     zIndex: 10,
     backgroundColor: `rgba(255, 255, 255, ${props.opacity})`,
-    border: '1px solid rgba(255, 255, 255, 0.25)',
-    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.4)',
+    border: '1px solid var(--lg-border)',
+    boxShadow: 'var(--lg-shadow-soft)',
     position: props.draggable ? 'absolute' : 'relative',
     boxSizing: 'border-box',
     overflow: 'hidden',
     display: 'flex',
     flexDirection: 'column',
     flex: '1',
-    minHeight: '0'
+    minHeight: '0',
+    isolation: 'isolate'
   };
   
   if (props.draggable) {
@@ -337,7 +338,7 @@ const highlightStyle = computed(() => {
     width: '300px',
     height: '300px',
     transform: 'translate(-50%, -50%)',
-    background: 'radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%)',
+    background: 'radial-gradient(circle, rgba(255,255,255,0.22) 0%, rgba(102,217,255,0.1) 34%, rgba(255,255,255,0) 72%)',
     pointerEvents: 'none',
     zIndex: 0,
     transition: 'opacity 0.3s ease'
@@ -360,7 +361,45 @@ const highlightStyle = computed(() => {
 }
 
 .liquid-glass-container {
-  transition: box-shadow 0.3s ease, border 0.3s ease;
+  transition: box-shadow var(--lg-motion), border var(--lg-motion), transform var(--lg-motion);
+}
+
+.liquid-glass-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.04) 34%, transparent 58%),
+    radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.28), transparent 30%);
+  opacity: 0.78;
+}
+
+.liquid-glass-container::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 18px 18px;
+  mix-blend-mode: screen;
+  opacity: 0.16;
+}
+
+.liquid-glass-container:hover {
+  border-color: var(--lg-border-strong);
+  box-shadow: var(--lg-shadow-strong);
+}
+
+.liquid-glass-container > :not(.glass-highlight) {
+  position: relative;
+  z-index: 1;
 }
 
 .glass-highlight {

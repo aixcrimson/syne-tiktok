@@ -103,8 +103,8 @@ const handleLogout = () => {
   width: 100vw;
   height: 100vh;
   position: relative;
-  background-color: #000;
-  color: white;
+  background: var(--lg-bg-radial);
+  color: var(--lg-text-primary);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -125,10 +125,10 @@ const handleLogout = () => {
 
 .blob-1 {
   position: absolute;
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(255,42,95,0.4), transparent 60%);
-  top: -20%;
+  width: 820px;
+  height: 820px;
+  background: radial-gradient(circle, rgba(255,45,120,0.46), transparent 62%);
+  top: -22%;
   right: -10%;
   animation: float-slow 30s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
@@ -139,7 +139,7 @@ const handleLogout = () => {
   position: absolute;
   width: 1000px;
   height: 1000px;
-  background: radial-gradient(circle, rgba(0,210,255,0.3), transparent 60%);
+  background: radial-gradient(circle, rgba(102,217,255,0.34), transparent 62%);
   bottom: -30%;
   left: -20%;
   animation: float-slow 25s infinite alternate-reverse cubic-bezier(0.4, 0, 0.2, 1);
@@ -151,7 +151,7 @@ const handleLogout = () => {
   position: absolute;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(100,60,255,0.3), transparent 60%);
+  background: radial-gradient(circle, rgba(139,92,246,0.34), transparent 62%);
   top: 40%;
   left: 30%;
   animation: float-slow 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
@@ -169,14 +169,15 @@ const handleLogout = () => {
 .dynamic-island-wrapper {
   position: relative;
   z-index: 100;
-  width: 640px;
+  width: min(680px, calc(100vw - 32px));
   height: 60px;
   margin-top: 32px;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform var(--lg-motion), filter var(--lg-motion);
 }
 
 .dynamic-island-wrapper:hover {
-  transform: scale(1.02);
+  filter: brightness(1.08);
+  transform: scale(1.018);
 }
 
 .dynamic-island {
@@ -201,7 +202,7 @@ const handleLogout = () => {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #ff2a5f, #00d2ff);
+  background: var(--lg-brand-gradient);
   margin-right: 8px;
   box-shadow: 0 0 10px rgba(255, 42, 95, 0.8);
 }
@@ -220,7 +221,7 @@ const handleLogout = () => {
 
 :deep(.ant-menu-dark .ant-menu-item) {
   padding: 0 20px;
-  color: rgba(255, 255, 255, 0.6) !important;
+  color: var(--lg-text-secondary) !important;
   font-weight: 500;
   transition: all 0.3s ease;
   border-radius: 16px;
@@ -228,14 +229,14 @@ const handleLogout = () => {
 }
 
 :deep(.ant-menu-dark .ant-menu-item:hover) {
-  background-color: rgba(255, 255, 255, 0.1) !important;
+  background-color: var(--lg-surface-soft) !important;
   color: white !important;
 }
 
 :deep(.ant-menu-dark .ant-menu-item-selected) {
-  background-color: rgba(255, 255, 255, 0.15) !important;
+  background-color: var(--lg-surface-medium) !important;
   color: white !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 8px 22px rgba(0, 0, 0, 0.18);
 }
 
 .user-actions {
@@ -246,7 +247,7 @@ const handleLogout = () => {
 
 .ios-avatar {
   background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--lg-border);
   cursor: pointer;
   transition: transform 0.2s ease;
 }
@@ -256,7 +257,7 @@ const handleLogout = () => {
 }
 
 .logout-btn {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--lg-text-secondary);
   border-radius: 50%;
   width: 32px;
   height: 32px;
@@ -294,7 +295,7 @@ const handleLogout = () => {
   font-size: 32px;
   font-weight: 700;
   margin: 0;
-  color: white;
+  color: var(--lg-text-primary);
   letter-spacing: -1px;
 }
 
@@ -305,7 +306,7 @@ const handleLogout = () => {
   display: flex;
   flex-direction: column;
   min-height: 0;
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform var(--lg-motion), filter var(--lg-motion);
 }
 
 .content-wrapper:hover {
@@ -329,11 +330,11 @@ const handleLogout = () => {
   background: transparent;
 }
 .glass-content-inner::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.18);
   border-radius: 3px;
 }
 .glass-content-inner::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.34);
 }
 
 /* iOS App scaling transition */
@@ -350,5 +351,53 @@ const handleLogout = () => {
 .ios-scale-leave-to {
   opacity: 0;
   transform: scale(1.04);
+}
+
+@media (max-width: 720px) {
+  .dynamic-island-wrapper {
+    height: auto;
+    min-height: 60px;
+    margin-top: 16px;
+  }
+
+  .dynamic-island {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .logo {
+    flex: 1;
+    min-width: 88px;
+  }
+
+  .ios-menu {
+    order: 3;
+    width: 100%;
+    flex-basis: 100%;
+    line-height: 44px;
+  }
+
+  :deep(.ant-menu-dark .ant-menu-item) {
+    padding: 0 12px;
+    margin: 0 2px;
+  }
+
+  .main-area {
+    padding: 20px 14px;
+  }
+
+  .content-header {
+    margin-bottom: 16px;
+    padding-left: 6px;
+  }
+
+  .page-title {
+    font-size: 26px;
+  }
+
+  .glass-content-inner {
+    padding: 18px;
+  }
 }
 </style>
